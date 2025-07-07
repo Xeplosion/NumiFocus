@@ -1,7 +1,10 @@
 import os
 
-from logging_config import setup_logging
+from fastapi import FastAPI
 import logging
+from .routes import router
+
+from logging_config import setup_logging
 
 if __name__ == "__main__":
     # TODO: make shit work.
@@ -11,6 +14,10 @@ if __name__ == "__main__":
     logger = logging.getLogger('numifocus.main')
     logger.info("Starting NumiFocus")
 
-    pass
+    app = FastAPI()
+    app.include_router(router)
+
+    @app.get("/")
+    def root():
+        return {"message": "Hello from FastAPI!"}
         
-    print(os.environ.get("INSTRUMENT_DATA"))
