@@ -20,4 +20,3 @@ if __name__ == "__main__":
     @app.get("/")
     def root():
         return {"message": "Hello from FastAPI!"}
-        
